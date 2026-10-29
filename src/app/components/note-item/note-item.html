@@ -1,0 +1,7 @@
+<div class="sticker" [style.background-color]="note.color">
+  <b>{{ note.title }}</b>
+  @if (note.pinned) { (закреплено) }
+  <p>{{ note.content }}</p>
+  <button (click)="pin()">{{ note.pinned ? 'Открепить' : 'Закрепить' }}</button>
+  <button (click)="remove()">Удалить</button>
+</div>

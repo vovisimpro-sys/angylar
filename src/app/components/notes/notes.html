@@ -1,0 +1,25 @@
+@if (!onlyPinned) {
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <input formControlName="title" placeholder="Заголовок">
+      @if (form.controls.title.touched && form.controls.title.errors) {
+        <span style="color: red">
+          @if (form.controls.title.errors['required']) { Заголовок обязателен }
+          @if (form.controls.title.errors['minlength']) { Минимум 3 символа }
+          @if (form.controls.title.errors['maxlength']) { Максимум 30 символов }
+        </span>
+      }
+    </div>
+    <div>
+      <textarea formControlName="content" placeholder="Текст"></textarea>
+    </div>
+    <div>
+      Цвет: <input type="color" formControlName="color">
+    </div>
+    <button type="submit" [disabled]="form.invalid">Добавить</button>
+  </form>
+} @else {
+  <h3>Закрепленные заметки</h3>
+}
+
+<app-notes-grid [notes]="getNotes()"></app-notes-grid>
